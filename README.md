@@ -12,6 +12,11 @@ GitSpace
 
 #### Usage
 
+GitSpace is a hub which clients connect to. As such, the GitHub module does not 
+include a definitive implementation of a client. However, WebSocket, RESTful and
+DDP client examples are provided for testing and example purposes, running 
+in the browser and as Node.js CLI apps: @todo
+
 - [Usage](http://gitspace.richplastow.com/#/doc/usage)
 
 

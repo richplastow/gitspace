@@ -146,3 +146,12 @@ footer a:hover,
 .button:hover {
   color:           #0f9;
 }
+
+
+/* w80a() */
+body >p >pre {
+  font-size: 1.5em;
+  line-height: 1.2;
+}
+
+

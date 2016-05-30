@@ -1,6 +1,6 @@
 {
   "name": "gitspace",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A WebSocket hub which facilitates collaboration in 3D space, while archiving activity to a Git repo",
   "main": "build/gitspace.js",
   "directories": {
@@ -11,7 +11,8 @@
   "devDependencies": {
     "apage": "latest",
     "coffee-script": "latest",
-    "nodemon": "latest"
+    "nodemon": "latest",
+    "ws": "latest"
   },
   "dependencies": {
   },

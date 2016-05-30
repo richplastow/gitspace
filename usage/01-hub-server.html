@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>GitSpace Basic Usage</title>
+  <title>GitSpace Hub Server</title>
 
   <!-- `w80a("alert this text!")` -->
   <script>!function(c){var d=document,v=navigator.userAgent,A='addEventListener'
@@ -42,6 +42,13 @@ addEventListener('load', function () {
 
         //// Create a gitspace instance. 
       , gitspace = new GitSpace({
+            env:  'browser'
+          , ip:   '999.888.777.666'
+          , port: 9999
+          , dns:  'browser-dns'
+          , http: {}
+          , ws:   function () {}
+          , page: 'Page in here'
         })
 
         //// Reveals the current state of `gitspace`. 
@@ -100,7 +107,7 @@ addEventListener('load', function () {
   <header>
     <a href="../index.html" title="GitSpace Homepage">GitSpace</a><span
     >/</span><a href="../index.html#/doc/usage" title="GitSpace Usage">Usage</a><span
-    >/</span><a href="01-basic-usage.html" title="Refresh this page">Basic Usage</a>
+    >/</span><a href="01-hub-server.html" title="Refresh this page">GitSpace Hub Server</a>
   </header>
   <main>
     <nav id="actions">

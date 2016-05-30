@@ -8,9 +8,9 @@ Prevent properties being accidentally modified or added to the module.
 @todo automate this
 
     oo.lock GitSpace
-    oo.lock SomeClass
-    oo.lock SomeClass.FirstSubClass
-    oo.lock SomeClass.SecondSubClass
+    oo.lock DB
+    oo.lock DB.FileSystem
+    oo.lock DB.Memory
 
 First, try defining an AMD module, eg for [RequireJS](http://requirejs.org/). 
 

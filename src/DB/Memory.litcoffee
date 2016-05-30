@@ -1,12 +1,12 @@
-SomeClass.FirstSubClass
-=======================
+DB.Memory
+=========
 
 
-#### Inherits from `SomeClass` ...@todo describe
+#### An in-memory database, which only persists as long as the session lasts
 
-    class SomeClass.FirstSubClass extends SomeClass
-      C: 'SomeClass.FirstSubClass'
-      toString: -> '[object SomeClass.FirstSubClass]'
+    class DB.Memory extends DB
+      C: 'DB.Memory'
+      toString: -> '[object DB.Memory]'
 
 
 #### `constructor()`
@@ -17,10 +17,10 @@ SomeClass.FirstSubClass
 @todo describe
 
       constructor: (config={}) ->
-        M = '/gitspace/src/SomeClass/FirstSubClass.litcoffee
-          SomeClass.FirstSubClass()\n  '
+        M = '/gitspace/src/DB/Memory.litcoffee
+          DB.Memory()\n  '
 
-Call `SomeClass::constructor(config)`. This will create the `@[oo._]` object. 
+Call `DB::constructor(config)`. This will create the `@[oo._]` object. 
 
         super config
 
@@ -58,7 +58,7 @@ Private Properties
 
 Prevent properties being accidentally modified or added to the instance. 
 
-        if 'SomeClass.FirstSubClass' == @C then oo.lock @
+        if 'DB.Memory' == @C then oo.lock @
 
 
 
@@ -74,8 +74,8 @@ Public Methods
 @todo describe
 
       xx: (yy) ->
-        M = '/gitspace/src/SomeClass/FirstSubClass.litcoffee
-          SomeClass::xx()\n  '
+        M = '/gitspace/src/DB/Memory.litcoffee
+          DB::xx()\n  '
 
 Check that the arguments are valid, or fallback to defaults if undefined. 
 
@@ -94,9 +94,9 @@ Public Static Functions
 
 @todo describe
 
-    SomeClass.FirstSubClass.xx = (yy) ->
-      M = '/gitspace/src/SomeClass/FirstSubClass.litcoffee
-        SomeClass.FirstSubClass.xx()\n  '
+    DB.Memory.xx = (yy) ->
+      M = '/gitspace/src/DB/Memory.litcoffee
+        DB.Memory.xx()\n  '
 
 Check that the arguments are valid, or fallback to defaults if undefined. 
 

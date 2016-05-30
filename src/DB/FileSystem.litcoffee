@@ -1,12 +1,12 @@
-SomeClass.SecondSubClass
-========================
+DB.FileSystem
+=============
 
 
-#### Inherits from `SomeClass` ...@todo describe
+#### A persistant flat-file database, only useable under Node.js
 
-    class SomeClass.SecondSubClass extends SomeClass
-      C: 'SomeClass.SecondSubClass'
-      toString: -> '[object SomeClass.SecondSubClass]'
+    class DB.FileSystem extends DB
+      C: 'DB.FileSystem'
+      toString: -> '[object DB.FileSystem]'
 
 
 #### `constructor()`
@@ -17,10 +17,10 @@ SomeClass.SecondSubClass
 @todo describe
 
       constructor: (config={}) ->
-        M = '/gitspace/src/SomeClass/SecondSubClass.litcoffee
-          SomeClass.SecondSubClass()\n  '
+        M = '/gitspace/src/DB/FileSystem.litcoffee
+          DB.FileSystem()\n  '
 
-Call `SomeClass::constructor(config)`. This will create the `@[oo._]` object. 
+Call `DB::constructor(config)`. This will create the `@[oo._]` object. 
 
         super config
 
@@ -58,7 +58,7 @@ Private Properties
 
 Prevent properties being accidentally modified or added to the instance. 
 
-        if 'SomeClass.SecondSubClass' == @C then oo.lock @
+        if 'DB.FileSystem' == @C then oo.lock @
 
 
 
@@ -74,8 +74,8 @@ Public Methods
 @todo describe
 
       xx: (yy) ->
-        M = '/gitspace/src/SomeClass/SecondSubClass.litcoffee
-          SomeClass::xx()\n  '
+        M = '/gitspace/src/DB/FileSystem.litcoffee
+          DB::xx()\n  '
 
 Check that the arguments are valid, or fallback to defaults if undefined. 
 
@@ -94,9 +94,9 @@ Public Static Functions
 
 @todo describe
 
-    SomeClass.SecondSubClass.xx = (yy) ->
-      M = '/gitspace/src/SomeClass/SecondSubClass.litcoffee
-        SomeClass.SecondSubClass.xx()\n  '
+    DB.FileSystem.xx = (yy) ->
+      M = '/gitspace/src/DB/FileSystem.litcoffee
+        DB.FileSystem.xx()\n  '
 
 Check that the arguments are valid, or fallback to defaults if undefined. 
 
