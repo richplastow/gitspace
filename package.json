@@ -1,6 +1,6 @@
 {
   "name": "gitspace",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "A WebSocket hub which facilitates collaboration in 3D space, while archiving activity to a Git repo",
   "main": "build/gitspace.js",
   "directories": {

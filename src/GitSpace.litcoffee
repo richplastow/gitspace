@@ -105,7 +105,7 @@ Create `@[oo._]`, a non-enumerable property with an unguessable name.
         @[oo._]._servers = { http:null, ws:null }
 
 
-#### `_db <null>`
+#### `_db <DB>`
 @todo describe
 
         @[oo._]._db = new DB.Memory
@@ -126,34 +126,20 @@ Public Methods
 
 
 #### `start()`
-- `yy <number> 123`  @todo describe
-- `<undefined>`      does not return anything
+- `<undefined>`  does not return anything
 
 @todo describe
 
-      start: (yy) ->
+      start: () ->
         M = '/gitspace/src/GitSpace.litcoffee
           GitSpace::start()\n  '
 
-Check that the arguments are valid, or fallback to defaults if undefined. 
-
-        yy = oo.vArg M, yy, 'yy <number>', 123
-
-Create a new HTTP and WebSocket server. @todo destroy them when `stop()` is called
+Create a new HTTP server and a new WebSocket server. @todo destroy them when `stop()` is called
 
         httpServer = @[oo._]._servers.http = @http.createServer()
-        wsServer   = @[oo._]._servers.ws   = (new @ws.Server({ server:httpServer }))
+        wsServer   = @[oo._]._servers.ws   = new @ws.Server {server:httpServer}
 
 Add event listeners to the WebSocket server. @todo remove them when `stop()` is called
-
-        wsServer.broadcast = (data) =>
-          if oo.S != oo.type data then data = JSON.stringify data
-          for client in wsServer.clients
-            oo data
-            try
-              client.send data
-            catch err
-              oo 'broadcast error:', err
 
         wsServer.on 'connection', (ws) => #@todo sometimes 'connect'?
           # oo ws # outputs a lot of info
@@ -162,10 +148,10 @@ Add event listeners to the WebSocket server. @todo remove them when `stop()` is 
           ws.on 'message', (data, flags) =>
             if flags.binary then return
             if 'POST ' == data.substr 0, 5
-              oo '>P ' + data.substr 5
+              oo '> ' + data.substr 5
               err = @[oo._]._db.update data.substr 5
               if err then ws.send "Error: #{err}"
-              @[oo._]._servers.ws.broadcast @[oo._]._db.list
+              @broadcast @[oo._]._db.list
             else if 'hi' == data
               ws.send 'hullo yourself'
 
@@ -185,7 +171,7 @@ Xx.
 #### `onHttpRequest()`
 - `request <object>`   an instance of http.IncomingMessage
 - `response <object>`  an instance of http.ServerResponse
-- `<undefined>`   does not return anything
+- `<undefined>`        does not return anything
 
 @todo describe
 
@@ -201,7 +187,7 @@ Xx.
           request.on 'end',  () => # note `=>`
             err = @[oo._]._db.update body
             if @[oo._]._servers.ws.clients.length
-              @[oo._]._servers.ws.broadcast @[oo._]._db.list
+              @broadcast @[oo._]._db.list
             sendPage response, @page, @[oo._]._db, @dns, err
         else if '/favicon.ico' == request.url
           return sendFavicon response # don’t log
@@ -209,6 +195,32 @@ Xx.
           sendPage response, @page, @[oo._]._db, @dns
 
         oo 'HTTP Request for ' + request.url
+
+
+
+
+#### `broadcast()`
+- `data <any>`   what to broadcast, typically an object or a string
+- `<undefined>`  does not return anything
+
+@todo describe
+
+      broadcast: (data) ->
+        M = '/gitspace/src/GitSpace.litcoffee
+          GitSpace::broadcast()\n  '
+
+If `data` is an object or array, convert it to a string. 
+
+        if oo.O == typeof data then data = JSON.stringify data
+
+Send to data to every client. 
+
+        for client in @[oo._]._servers.ws.clients
+          try
+            client.send data
+          catch err
+            oo M + 'broadcast error:', err
+
 
 
 
@@ -294,16 +306,15 @@ Xx.
 
       """
       <!DOCTYPE html>
-      <html>
+      <html lang="en">
       <head>
-        <meta charset="UTF-8">
-        <title>Looptopia</title>
-        <link rel="icon" type="image/x-icon" href="data:image/x-icon;,">
-        <script>
-        </script>
+        <meta charset="utf-8">
+        <title>GitSpace</title>
+        <link rel="icon" type="image/x-icon" href="favicon.ico">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
       </head>
       <body>
-        <h1>Looptopia</h1>
+        <h1>GitSpace</h1>
         <pre id="error">%error%</pre>
         <form method="post" action="">
           <input id="k" name="k" placeholder="key">
@@ -339,7 +350,7 @@ Xx.
           ws.onmessage = function (evt) {
               try {
                   var db = JSON.parse(evt.data);
-              } catch (er) { return error.innerHTML = er; }
+              } catch (err) { return error.innerHTML = err; }
               for (var html=[], i=0, l=db.length; i<l; i++) {
                   if (! db[i]) continue
                   html[i] = '    <dt>' + db[i].k + '</dt>\\n'

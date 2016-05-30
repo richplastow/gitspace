@@ -75,7 +75,7 @@ Public Methods
 
       xx: (yy) ->
         M = '/gitspace/src/DB/FileSystem.litcoffee
-          DB::xx()\n  '
+          DB.FileSystem::xx()\n  '
 
 Check that the arguments are valid, or fallback to defaults if undefined. 
 

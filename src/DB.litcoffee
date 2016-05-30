@@ -32,18 +32,10 @@ Public Properties
 -----------------
 
 
-#### `list <[object]> []`
-From `config.initial`, @todo describe
+#### `x <number> 123`
+From `config.x`, @todo describe
 
-        @list = v 'initial <array of object>', []
-
-
-#### `lut <object> {}`
-A lookup table, kept in sync with `list`. 
-
-        @lut = {}
-        for el,i in @list
-          @lut[el.k] = i
+        @x = v 'x <number>', 123
 
 
 
@@ -62,42 +54,20 @@ Public Methods
 --------------
 
 
-#### `update()`
-- `body <string ^k=([a-z]+)&v=([a-z]*)$>`  @todo describe
-- `<undefined>`                            does not return anything
+#### `xx()`
+- `yy <number> 123`  @todo describe
+- `<undefined>`      does not return anything
 
 @todo describe
 
-      update: (body) ->
+      xx: (yy) ->
         M = '/gitspace/src/DB.litcoffee
-          DB::list()\n  '
+          DB::xx()\n  '
 
-Xx.
+Check that the arguments are valid, or fallback to defaults if undefined. 
 
-        oo 'update'
-        match = body.match /^k=([a-z]+)&v=([a-z]*)$/
-        if ! match then return "Lowercase a-z keys and values only, for now"
+        yy = oo.vArg M, yy, 'yy <number>', 123
 
-Xx.
-
-        k = match[1]
-        v = match[2]
-        i = @lut[k]
-        if oo.isU i               # true if key not known
-          if '' == v then return "Value of new key '#{k}' must not be blank"
-          oo 1, i, k, v
-          i = @list.length
-          @lut[k]  = i
-          @list[i] = { k:k, v:v } # create
-        else if '' == v
-          oo 2, i, k, v
-          @list[i] = null
-          delete @lut[k]          # delete
-        else
-          oo 3, i, k, v
-          @list[i] = { k:k, v:v } # update
-        
-        return '' # signifies success
 
 
 
